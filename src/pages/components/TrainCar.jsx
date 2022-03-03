@@ -1,16 +1,16 @@
 import { Edit, Delete } from '@mui/icons-material'
 import { TableRow, TableCell, Box, IconButton } from '@mui/material'
 
-export const TrainCar = ({ trainCar: { destination, name, receiver }, hasActions = true }) => {
+export const TrainCar = ({ trainCar, onClickEditButton, hasActions = true }) => {
   return (
-    <TableRow key={name}>
-      <TableCell align="center">{name}</TableCell>
-      <TableCell align="center">{destination}</TableCell>
-      <TableCell align="center">{receiver}</TableCell>
+    <TableRow key={trainCar.name}>
+      <TableCell align="center">{trainCar.name}</TableCell>
+      <TableCell align="center">{trainCar.destination}</TableCell>
+      <TableCell align="center">{trainCar.receiver}</TableCell>
       {hasActions && (
         <TableCell align="center">
           <Box sx={{ display: 'flex', justifyContent: 'center' }} style={{ gap: '10px' }}>
-            <IconButton aria-label="edit">
+            <IconButton aria-label="edit" onClick={() => onClickEditButton(trainCar)}>
               <Edit />
             </IconButton>
             <IconButton aria-label="delete">
