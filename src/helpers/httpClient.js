@@ -25,5 +25,5 @@ export const remove = (url) =>
       method: 'DELETE',
     }
     const response = await fetch(`http://localhost:8080/${url}`, options)
-    return { data: await response.json(), status: response.status }
+    return { status: response.status }
   })()
