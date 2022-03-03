@@ -8,12 +8,22 @@ const withHandleException = (fun) => {
   }
 }
 
-export const update = withHandleException(async (url, data) => {
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  }
-  const response = await fetch(url, options)
-  return await response.json()
-})
+export const update = (url, data) =>
+  withHandleException(async () => {
+    const options = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }
+    const response = await fetch(`http://localhost:8080/${url}`, options)
+    return { data: await response.json(), status: response.status }
+  })()
+
+export const remove = (url) =>
+  withHandleException(async () => {
+    const options = {
+      method: 'DELETE',
+    }
+    const response = await fetch(`http://localhost:8080/${url}`, options)
+    return { data: await response.json(), status: response.status }
+  })()
