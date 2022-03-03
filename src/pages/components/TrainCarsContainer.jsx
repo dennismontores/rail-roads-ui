@@ -3,6 +3,7 @@ import { Paper, Alert, Fab } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { TrainCarsTable, TrainCarsHeader, DepartureList, UpdateTrainCarDlg } from '../components'
+import {removeTrainCar} from "../../services";
 
 export const TrainCarsContainer = () => {
   const [trainCarOnEdition, setTrainCarOnEdition] = useState()
@@ -26,6 +27,16 @@ export const TrainCarsContainer = () => {
     setTrainCarOnEdition(trainCar)
     setIsOpenUpdateDlg(true)
   }
+
+  const onClickRemoveButton = async (trainCar) => {
+    const response = await removeTrainCar(trainCar.id)
+    console.log('it is getting a response after removeTrainCar')
+    if (response.error) return
+    console.log('this part is working')
+    const trainCarsNewListing = trainCarsListing.filter((trainX) => trainX.id !== trainCar.id)
+    setTrainCarsListing(trainCarsNewListing)
+  }
+
   const handleCloseUpdateDlg = () => {
     setTrainCarOnEdition(null)
     setIsOpenUpdateDlg(false)
@@ -49,7 +60,7 @@ export const TrainCarsContainer = () => {
   return (
     <Paper sx={{ margin: '10px', padding: (theme) => theme.spacing(2) }}>
       <TrainCarsHeader onAddTrain={() => {}} />
-      <TrainCarsTable trainCars={trainCarsListing} onClickEditButton={onClickEditButton} hasActions />
+      <TrainCarsTable trainCars={trainCarsListing} onClickEditButton={onClickEditButton} onClickRemoveButton={onClickRemoveButton} hasActions />
       <Fab variant="extended" color="primary" onClick={showSort}>
         <Add sx={{ mr: 1 }} />
         Sort

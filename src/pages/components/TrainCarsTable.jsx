@@ -1,7 +1,7 @@
 import { Box, Table, TableCell, TableContainer, TableHead, TableRow, TableBody } from '@mui/material'
 import { TrainCar } from './TrainCar'
 
-export const TrainCarsTable = ({ trainCars, onClickEditButton, hasActions = true }) => {
+export const TrainCarsTable = ({ trainCars, onClickEditButton, onClickRemoveButton, hasActions = true }) => {
   return (
     <TableContainer component={Box}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="simple table">
@@ -15,7 +15,7 @@ export const TrainCarsTable = ({ trainCars, onClickEditButton, hasActions = true
         </TableHead>
         <TableBody>
           {trainCars?.map((car) => (
-            <TrainCar key={car.name} trainCar={car} hasActions={hasActions} onClickEditButton={onClickEditButton} />
+            <TrainCar key={car.id} trainCar={car} hasActions={hasActions} onClickEditButton={onClickEditButton} onClickRemoveButton={onClickRemoveButton} />
           ))}
         </TableBody>
       </Table>

@@ -1,9 +1,9 @@
 import { Edit, Delete } from '@mui/icons-material'
 import { TableRow, TableCell, Box, IconButton } from '@mui/material'
 
-export const TrainCar = ({ trainCar, onClickEditButton, hasActions = true }) => {
+export const TrainCar = ({ trainCar, onClickEditButton, onClickRemoveButton, hasActions = true }) => {
   return (
-    <TableRow key={trainCar.name}>
+    <TableRow key={trainCar.id}>
       <TableCell align="center">{trainCar.name}</TableCell>
       <TableCell align="center">{trainCar.destination}</TableCell>
       <TableCell align="center">{trainCar.receiver}</TableCell>
@@ -13,7 +13,7 @@ export const TrainCar = ({ trainCar, onClickEditButton, hasActions = true }) => 
             <IconButton aria-label="edit" onClick={() => onClickEditButton(trainCar)}>
               <Edit />
             </IconButton>
-            <IconButton aria-label="delete">
+            <IconButton aria-label="delete" onClick={() => onClickRemoveButton(trainCar)}>
               <Delete />
             </IconButton>
           </Box>

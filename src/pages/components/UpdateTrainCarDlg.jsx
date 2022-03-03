@@ -39,6 +39,7 @@ export const UpdateTrainCarDlg = ({
   const handleSubmit = async () => {
     if (!formRef.current) return
     const data = {
+      id: trainCarOnEdition.id,
       destination: formRef.current['destination'].value,
       name: formRef.current['name'].value,
       receiver: formRef.current['receiver'].value,
