@@ -47,10 +47,10 @@ export default function ReceiverTable() {
     handleClose();
 
     const newReceiver = {
-      railRoadCarReceiver: {
+      
         key: formRef.current['name'].value,
         value: formRef.current['priority'].value,
-      },
+      
     };
 
     await fetch(`${url}/railRoadCarReceivers`, {
@@ -122,7 +122,7 @@ export default function ReceiverTable() {
                       variant="contained"
                       color="error"
                       onClick={async () => {
-                        await handleDeleteRequest(row.key);
+                        await handleDeleteRequest(row.id);
                       }}
                     >
                       <Delete />

@@ -15,7 +15,7 @@ const DestinationWrapper = () => {
                         <DestinationTable />
                     </Grid>
                     <Grid item xs={8}>
-                        {/* <ReceiverTable/> */}
+                        <ReceiverTable/> 
                     </Grid>
                 </Grid>
             </Box>
