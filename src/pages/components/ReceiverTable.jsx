@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 import {
   Button,
   Dialog,
@@ -16,42 +16,40 @@ import {
   TableRow,
   TextField,
   Typography,
-} from '@mui/material';
-import { Delete } from '@mui/icons-material';
+} from '@mui/material'
+import { Delete } from '@mui/icons-material'
 
-const url = 'http://localhost:8080';
+const url = 'http://localhost:8080'
 
 export default function ReceiverTable() {
-  const [rows, setRows] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [rows, setRows] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
 
   function getReceivers() {
     fetch(`${url}/railRoadCarReceivers/list`)
       .then((res) => res.json())
-      .then((data) => setRows(data));
+      .then((data) => setRows(data))
   }
 
   useEffect(() => {
-    getReceivers();
-  }, []);
+    getReceivers()
+  }, [])
 
   const handleClickOpen = () => {
-    setIsOpen(true);
-  };
+    setIsOpen(true)
+  }
 
   const handleClose = () => {
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
 
   const handleSaveRequest = async () => {
-    handleClose();
+    handleClose()
 
     const newReceiver = {
-      
-        key: formRef.current['name'].value,
-        value: formRef.current['priority'].value,
-      
-    };
+      key: formRef.current['name'].value,
+      value: formRef.current['priority'].value,
+    }
 
     await fetch(`${url}/railRoadCarReceivers`, {
       method: 'POST',
@@ -59,25 +57,25 @@ export default function ReceiverTable() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(newReceiver),
-    });
+    })
 
-    getReceivers();
-  };
+    getReceivers()
+  }
 
   const handleDeleteRequest = async (key) => {
-    handleClose();
+    handleClose()
 
     await fetch(`${url}/railRoadCarReceivers/${key}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
-    });
+    })
 
-    getReceivers();
-  };
+    getReceivers()
+  }
 
-  const formRef = useRef();
+  const formRef = useRef()
 
   return (
     <>
@@ -104,11 +102,12 @@ export default function ReceiverTable() {
       </Dialog>
 
       <TableContainer component={Paper}>
-        <Table sx={{ maxWidth: 400 }} size="small" aria-label="receivers table">
+        <Table size="small" aria-label="receivers table">
           <TableHead>
             <TableRow>
               <TableCell> Priority </TableCell>
               <TableCell> Name </TableCell>
+              <TableCell> Actions </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -122,18 +121,17 @@ export default function ReceiverTable() {
                       variant="contained"
                       color="error"
                       onClick={async () => {
-                        await handleDeleteRequest(row.id);
-                      }}
-                    >
+                        await handleDeleteRequest(row.id)
+                      }}>
                       <Delete />
                     </IconButton>
                   </TableCell>
                 </TableRow>
-              );
+              )
             })}
           </TableBody>
         </Table>
       </TableContainer>
     </>
-  );
+  )
 }
