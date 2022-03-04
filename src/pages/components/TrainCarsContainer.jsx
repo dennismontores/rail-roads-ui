@@ -3,7 +3,7 @@ import { Paper, Alert, Fab } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { TrainCarsTable, PageHeader, DepartureList, UpdateTrainCarDlg } from '../components'
-import {removeTrainCar} from "../../services";
+import { removeTrainCar } from '../../services'
 
 export const TrainCarsContainer = () => {
   const [trainCarOnEdition, setTrainCarOnEdition] = useState()
@@ -59,19 +59,27 @@ export const TrainCarsContainer = () => {
   if (error) return <Alert severity="error">Error while trying to load the car list!</Alert>
 
   return (
-    <Paper sx={{ margin: '10px', padding: (theme) => theme.spacing(2) }}>
-      <PageHeader
-          title="Train Cars"
-          buttonTitle="Add Train Car"
-          isCreateButton
-          onButtonClick={() => {}}  />
-      <TrainCarsTable trainCars={trainCarsListing} onClickEditButton={onClickEditButton} onClickRemoveButton={onClickRemoveButton} hasActions />
-      {!shouldShowSort && <Fab variant="extended" color="primary" onClick={showSort}>Sort</Fab> }
-      {shouldShowSort && <PageHeader
+    <Paper sx={{ padding: (theme) => theme.spacing(2) }}>
+      <PageHeader title="Train Cars" buttonTitle="Add Train Car" isCreateButton onButtonClick={() => {}} />
+      <TrainCarsTable
+        trainCars={trainCarsListing}
+        onClickEditButton={onClickEditButton}
+        onClickRemoveButton={onClickRemoveButton}
+        hasActions
+      />
+      {!shouldShowSort && (
+        <Fab variant="extended" color="primary" onClick={showSort}>
+          Sort
+        </Fab>
+      )}
+      {shouldShowSort && (
+        <PageHeader
           title="Departure List"
           buttonTitle="Close Departure List"
           isCreateButton
-          onButtonClick={() => closeDepartureList()}  />}
+          onButtonClick={() => closeDepartureList()}
+        />
+      )}
       {shouldShowSort && <DepartureList />}
       <UpdateTrainCarDlg
         isOpen={isOpenUpdateDlg}

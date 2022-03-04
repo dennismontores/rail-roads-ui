@@ -72,7 +72,7 @@ export const UpdateTrainCarDlg = ({
       <DialogContent dividers>
         <form ref={formRef} noValidate>
           <FormControl fullWidth sx={{ marginBottom: (theme) => theme.spacing(2) }}>
-            <TextField id="name" name="name" label="Car Name" value={trainCarOnEdition?.name ?? ''} disabled />
+            <TextField id="name" name="name" label="Car Name" defaultValue={trainCarOnEdition?.name ?? ''} disabled />
           </FormControl>
           <Box sx={{ display: 'flex' }} style={{ gap: '10px' }}>
             <FormControl fullWidth>
@@ -81,7 +81,7 @@ export const UpdateTrainCarDlg = ({
                 id="destination"
                 name="destination"
                 label="Destination"
-                value={trainCarOnEdition?.destination ?? ''}>
+                defaultValue={trainCarOnEdition?.destination ?? ''}>
                 {destinations?.map(({ value, key }) => (
                   <MenuItem key={value} value={key}>
                     {key}
@@ -91,7 +91,7 @@ export const UpdateTrainCarDlg = ({
             </FormControl>
             <FormControl fullWidth>
               <InputLabel>Receiver</InputLabel>
-              <Select id="receiver" name="receiver" label="Receiver" value={trainCarOnEdition?.receiver ?? ''}>
+              <Select id="receiver" name="receiver" label="Receiver" defaultValue={trainCarOnEdition?.receiver ?? ''}>
                 {receivers?.map(({ value, key }) => (
                   <MenuItem key={value} value={key}>
                     {key}

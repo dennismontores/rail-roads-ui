@@ -1,17 +1,9 @@
 {
-<<<<<<< HEAD
-    "trailingComma": "all",
-    "singleQuote": true,
-    "tabWidth": 2,
-    "bracketSpacing": true,
-    "printWidth": 120,
-    "semi": false,
-    "bracketSameLine": true
-}
-=======
-  "trailingComma": "es5",
+  "trailingComma": "all",
+  "singleQuote": true,
   "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true
+  "bracketSpacing": true,
+  "printWidth": 120,
+  "semi": false,
+  "bracketSameLine": true
 }
->>>>>>> 0d3e395 (feat: added Receiver table component)

@@ -1,7 +1,14 @@
-import { TrainCarsContainer } from './components'
+import { Box } from '@mui/material'
+import { TrainCarsContainer, DestinationWrapper } from './components'
 
 const Home = () => {
-  return <TrainCarsContainer />
+  return (
+    <Box sx={{ p: (theme) => theme.spacing(2) }}>
+      <DestinationWrapper />
+      <br />
+      <TrainCarsContainer />
+    </Box>
+  )
 }
 
 export default Home
