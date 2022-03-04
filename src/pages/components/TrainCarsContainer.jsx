@@ -1,13 +1,14 @@
-import { Add } from '@mui/icons-material'
 import { Paper, Alert, Fab } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
 import { TrainCarsTable, PageHeader, DepartureList, UpdateTrainCarDlg } from '../components'
-import { removeTrainCar } from '../../services'
+import { getTrainCars, removeTrainCar } from '../../services'
+import { AddTrainCarDlg } from './AddTrainCarDlg'
 
 export const TrainCarsContainer = () => {
   const [trainCarOnEdition, setTrainCarOnEdition] = useState()
   const [isOpenUpdateDlg, setIsOpenUpdateDlg] = useState(false)
+  const [isOpenAddDlg, setIsOpenAddDlg] = useState(false)
   const [shouldShowSort, setShouldShowSort] = useState(false)
   const [trainCarsListing, setTrainCarsListing] = useState([])
   const { data: trainCars, loading, error } = useFetch('railRoadCars/list')
@@ -43,6 +44,12 @@ export const TrainCarsContainer = () => {
     setIsOpenUpdateDlg(false)
   }
 
+  const handleAdd = async () => {
+    const response = await getTrainCars()
+    if (response.error) return 
+    setTrainCarsListing(response.data)
+  }
+
   const updateItemOnListing = (trainCar) => {
     const foundItemIdx = trainCarsListing.findIndex((item) => item.name === trainCar.name)
 
@@ -60,7 +67,14 @@ export const TrainCarsContainer = () => {
 
   return (
     <Paper sx={{ padding: (theme) => theme.spacing(2) }}>
-      <PageHeader title="Train Cars" buttonTitle="Add Train Car" isCreateButton onButtonClick={() => {}} />
+      <PageHeader
+        title="Train Cars"
+        buttonTitle="Add Train Car"
+        isCreateButton
+        onButtonClick={() => {
+          setIsOpenAddDlg(true)
+        }}
+      />
       <TrainCarsTable
         trainCars={trainCarsListing}
         onClickEditButton={onClickEditButton}
@@ -88,6 +102,13 @@ export const TrainCarsContainer = () => {
         destinations={destinations}
         receivers={receivers}
         updateItemOnListing={updateItemOnListing}
+      />
+      <AddTrainCarDlg
+        isOpen={isOpenAddDlg}
+        handleClose={() => setIsOpenAddDlg(false)}
+        destinations={destinations}
+        receivers={receivers}
+        handleAdd={handleAdd}
       />
     </Paper>
   )
