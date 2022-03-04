@@ -66,7 +66,11 @@ export const TrainCarsContainer = () => {
           isCreateButton
           onButtonClick={() => {}}  />
       <TrainCarsTable trainCars={trainCarsListing} onClickEditButton={onClickEditButton} onClickRemoveButton={onClickRemoveButton} hasActions />
-      {!shouldShowSort && <Fab variant="extended" color="primary" onClick={showSort}>Sort</Fab> }
+      {!shouldShowSort && <Fab
+                          sx={{ margin: '10px', padding: (theme) => theme.spacing(2) }}
+                          variant="extended"
+                          color="primary"
+                          onClick={showSort}>Sort</Fab> }
       {shouldShowSort && <PageHeader
           title="Departure List"
           buttonTitle="Close Departure List"

@@ -11,7 +11,11 @@ export const PageHeader = ({onButtonClick:handleClick, title, buttonTitle, isCre
         marginBottom: (theme) => theme.spacing(2),
       }}>
       <Typography sx={{ fontSize: (theme) => theme.spacing(3), fontWeight: 'bold' }}>{title}</Typography>
-      <Fab variant="extended" color="primary" onClick={handleClick}>
+      <Fab
+          sx={{ margin: '10px', padding: (theme) => theme.spacing(2) }}
+          variant="extended"
+          color="primary"
+          onClick={handleClick}>
           {isCreateButton && <Add sx={{ mr: 1 }} />}
           {buttonTitle}
       </Fab>
