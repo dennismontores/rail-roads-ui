@@ -1,6 +1,6 @@
 export * from './TrainCar'
 export * from './TrainCarsTable'
-export * from './TrainCarsHeader'
+export * from './PageHeader'
 export * from './TrainCarsContainer'
 export * from './UpdateTrainCarDlg'
 export * from './DepartureList'
