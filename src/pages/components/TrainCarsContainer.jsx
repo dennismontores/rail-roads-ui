@@ -1,8 +1,7 @@
-import { Add } from '@mui/icons-material'
-import { Paper, Alert, Fab } from '@mui/material'
+import { Alert, Fab, Paper } from '@mui/material'
 import { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
-import { TrainCarsTable, PageHeader, DepartureList, UpdateTrainCarDlg } from '../components'
+import { DepartureList, PageHeader, TrainCarsTable, UpdateTrainCarDlg } from '../components'
 import { removeTrainCar } from '../../services'
 
 export const TrainCarsContainer = () => {
@@ -68,7 +67,11 @@ export const TrainCarsContainer = () => {
         hasActions
       />
       {!shouldShowSort && (
-        <Fab variant="extended" color="primary" onClick={showSort}>
+        <Fab
+          sx={{ margin: '10px', padding: (theme) => theme.spacing(2) }}
+          variant="extended"
+          color="primary"
+          onClick={showSort}>
           Sort
         </Fab>
       )}
@@ -76,7 +79,6 @@ export const TrainCarsContainer = () => {
         <PageHeader
           title="Departure List"
           buttonTitle="Close Departure List"
-          isCreateButton
           onButtonClick={() => closeDepartureList()}
         />
       )}
